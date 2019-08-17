@@ -1,0 +1,11 @@
+---
+  - name: install zabbix repo
+    shell: "rpm -Uvh http://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm  --force"
+  - name: Install Zabbix agent
+    yum: name=zabbix-agent state=latest
+  - name: copy zabbix-agent.conf
+    template: src=zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf backup=yes
+    notify:
+    - Restart zabbix_agent
+  - name: started zabbix_agentd
+    service: name=zabbix-agent state=started

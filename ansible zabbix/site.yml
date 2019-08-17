@@ -1,0 +1,14 @@
+---
+
+  - hosts: zabbix-server
+    remote_user: root
+    roles:
+     - base
+     - zabbix_server
+
+  - hosts: zabbix_agent
+    remote_user: root
+    roles:
+     - base
+     - zabbix_agent_install
+ 
