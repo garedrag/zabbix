@@ -1,4 +1,4 @@
 [zabbix-server]
-192.168.195.227  hostname=server_zabbix  ansible_ssh_user=root ansible_ssh_pass=123456
+192.168.195.227  hostname=server_zabbix  ansible_ssh_user=root ansible_ssh_pass=rfkbyf
 [zabbix_agent]
-192.168.195.195  hostname=agent_zabbix   ansible_ssh_user=root ansible_ssh_pass=123456
+192.168.195.195  hostname=agent_zabbix   ansible_ssh_user=root ansible_ssh_pass=rfkbyf
