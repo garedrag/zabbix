@@ -23,14 +23,14 @@
     ignore_errors: True
   - name: create zabbix db
     mysql_db: login_host=localhost login_user=root login_password=123456  name=zabbix state=present config_file=/etc/my.cnf
-
+    
   - name: import zabbix db
-    mysql_db: login_host=localhost login_user=root login_password=123456 config_file=/etc/my.cnf name=zabbix state=import target=/usr/share/doc/zabbix-server-mysql-4.2.5/cr  ignore_errors: True
+    mysql_db: login_host=localhost login_user=root login_password=123456 config_file=/etc/my.cnf name=zabbix state=import target=/usr/share/doc/zabbix-server-mysql-4.0.1/create.sql.gz
   - name: create zabbix user
-    mysql_user: login_host=localhost login_user=root login_password=123456 config_file=/etc/my.cnf user={{ zabbix_db_user }} password={{ zabbix_password }} priv=zabbix.*:ALL state=present
+    mysql_user: login_host=localhost login_user=root login_password=123456 config_file=/etc/my.cnf user={{ zabbix_db_user }} password={{ zabbix_password }} priv=zabbix.*:ALL state=present 
   - name: copy zabbix-server conf
     template: src=zabbix_server.conf.j2 dest=/etc/zabbix/zabbix_server.conf backup=yes
-    notify:
+    notify: 
     - restart zabbix-server
   - name: copy zabbix-http
     template: src=zabbix.conf.j2 dest=/etc/httpd/conf.d/zabbix.conf backup=yes
